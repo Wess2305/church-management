@@ -18,6 +18,7 @@
             <th>Nama</th>
             <th>No HP</th>
             <th>Email</th>
+            <th>Aksi</th>
         </tr>
 
     </thead>
@@ -35,6 +36,15 @@
             <td>{{ $jemaat->no_hp }}</td>
 
             <td>{{ $jemaat->email }}</td>
+
+            <td>{{ $jemaat->email }}</td>
+
+<td>
+    <a href="/jemaat/{{ $jemaat->id }}/edit"
+       class="btn btn-warning btn-sm">
+        Edit
+    </a>
+</td>
 
         </tr>
 

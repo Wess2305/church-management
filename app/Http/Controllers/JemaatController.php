@@ -38,4 +38,10 @@ public function store(Request $request)
 
     return redirect('/jemaat');
 }
+public function edit($id)
+{
+    $jemaat = Jemaat::findOrFail($id);
+
+    return view('jemaat.edit', compact('jemaat'));
+}
 }

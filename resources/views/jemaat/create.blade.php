@@ -15,6 +15,12 @@
         name="nama" 
         class="form-control"
         value="{{ old('nama') }}">
+
+        @error('nama')
+    <div class="text-danger">
+        {{ $message }}
+    </div>
+@enderror
     </div>
 
     <div class="mb-3">
@@ -23,6 +29,11 @@
         name="tanggal_lahir" 
         class="form-control"
         value="{{ old('tanggal_lahir') }}" >
+        @error('tanggal_lahir')
+    <div class="text-danger">
+        {{ $message }}
+    </div>
+@enderror
     </div>
 
     <div class="mb-3">
@@ -39,16 +50,27 @@
     <option value="Perempuan"
         {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>
         Perempuan
+        
     </option>
 
 </select>
+@error('jenis_kelamin')
+    <div class="text-danger">
+        {{ $message }}
+    </div>
+@enderror
     </div>
 
     <div class="mb-3">
         <label>Alamat</label>
         <textarea name="alamat"
     class="form-control"> {{ old('alamat') }}
-        ></textarea>
+        </textarea>
+        @error('alamat')
+    <div class="text-danger">
+        {{ $message }}
+    </div>
+@enderror
     </div>
 
     <div class="mb-3">
@@ -58,6 +80,11 @@
         name="no_hp" 
         class="form-control"
         value="{{ old('no_hp') }}">
+        @error('no_hp')
+    <div class="text-danger">
+        {{ $message }}
+    </div>
+@enderror
     </div>
 
     <div class="mb-3">
@@ -65,7 +92,13 @@
         <input type="email" 
         name="email" 
         class="form-control"
-        value="{{ old('email') }}" >
+        value="{{ old('email') }}">
+        
+        @error('email')
+    <div class="text-danger">
+        {{ $message }}
+    </div>
+@enderror>
     </div>
 
     <button type="submit" class="btn btn-success">

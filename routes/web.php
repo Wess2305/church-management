@@ -18,3 +18,5 @@ Route::get('/jemaat', [JemaatController::class, 'index']);
 Route::get('/jemaat/create', [JemaatController::class, 'create']);
 
 Route::post('/jemaat', [JemaatController::class, 'store']);
+
+Route::get('/jemaat/{id}/edit', [JemaatController::class, 'edit']);
