@@ -44,4 +44,39 @@ public function edit($id)
 
     return view('jemaat.edit', compact('jemaat'));
 }
+
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'nama' => 'required|max:100',
+        'tanggal_lahir' => 'required',
+        'jenis_kelamin' => 'required',
+        'alamat' => 'required',
+        'no_hp' => 'required|max:20',
+        'email' => 'required|email',
+    ]);
+
+    $jemaat = Jemaat::findOrFail($id);
+
+    $jemaat->update([
+        'nama' => $request->nama,
+        'tanggal_lahir' => $request->tanggal_lahir,
+        'jenis_kelamin' => $request->jenis_kelamin,
+        'alamat' => $request->alamat,
+        'no_hp' => $request->no_hp,
+        'email' => $request->email,
+    ]);
+
+    return redirect('/jemaat');
+}
+
+public function destroy($id)
+{
+    $jemaat = Jemaat::findOrFail($id);
+
+    $jemaat->delete();
+
+    return redirect('/jemaat');
+}
+
 }

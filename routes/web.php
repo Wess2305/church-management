@@ -20,3 +20,7 @@ Route::get('/jemaat/create', [JemaatController::class, 'create']);
 Route::post('/jemaat', [JemaatController::class, 'store']);
 
 Route::get('/jemaat/{id}/edit', [JemaatController::class, 'edit']);
+
+Route::put('/jemaat/{id}', [JemaatController::class, 'update']);
+
+Route::delete('/jemaat/{id}', [JemaatController::class, 'destroy']);

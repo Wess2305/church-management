@@ -7,6 +7,7 @@
 <form method="POST" action="/jemaat/{{ $jemaat->id }}">
 
     @csrf
+    @method('PUT')
 
     <div class="mb-3">
         <label>Nama</label>
