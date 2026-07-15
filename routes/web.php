@@ -1,26 +1,28 @@
 <?php
+
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\JemaatController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
 
-Route::get('/about', function () {
-    return view('about');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+
+    Route::resource('jemaat', JemaatController::class);
+
 });
 
-Route::get('/contact', function () {
-    return view('contact');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('/jemaat', [JemaatController::class, 'index']);
 
-Route::get('/jemaat/create', [JemaatController::class, 'create']);
-
-Route::post('/jemaat', [JemaatController::class, 'store']);
-
-Route::get('/jemaat/{id}/edit', [JemaatController::class, 'edit']);
-
-Route::put('/jemaat/{id}', [JemaatController::class, 'update']);
-
-Route::delete('/jemaat/{id}', [JemaatController::class, 'destroy']);
+require __DIR__.'/auth.php';
