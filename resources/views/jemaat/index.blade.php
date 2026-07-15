@@ -107,4 +107,6 @@
 
 </table>
 
+{{ $jemaats->links() }}
+
 @endsection

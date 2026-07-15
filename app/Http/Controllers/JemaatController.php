@@ -13,7 +13,7 @@ class JemaatController extends Controller
 
     $jemaats = Jemaat::when($search, function ($query) use ($search) {
         $query->where('nama', 'like', "%{$search}%");
-    })->get();
+    })->paginate(10);
     
     return view('jemaat.index', compact('jemaats'));
     }
