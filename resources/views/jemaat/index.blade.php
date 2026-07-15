@@ -4,6 +4,34 @@
 
 <h2>📋 Data Jemaat</h2>
 
+@if(session('success'))
+
+<div class="alert alert-success">
+
+{{ session('success')}}
+</div>
+
+@endif
+
+<form action="/jemaat" method="GET" class="mb-3">
+
+    <div class="input-group">
+
+        <input
+            type="text"
+            name="search"
+            class="form-control"
+            placeholder="Cari nama jemaat..."
+            value="{{ request('search') }}">
+
+        <button class="btn btn-primary">
+            Cari
+        </button>
+
+    </div>
+
+</form>
+
 
 <a href="/jemaat/create" class="btn btn-primary mb-3">
     ➕ Tambah Jemaat

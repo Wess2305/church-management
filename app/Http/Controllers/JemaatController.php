@@ -6,9 +6,14 @@ use App\Models\Jemaat;
 use Illuminate\Http\Request;
 class JemaatController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-    $jemaats = Jemaat::all();    
+
+    $search = $request->search;
+
+    $jemaats = Jemaat::when($search, function ($query) use ($search) {
+        $query->where('nama', 'like', "%{$search}%");
+    })->get();
     
     return view('jemaat.index', compact('jemaats'));
     }
@@ -36,7 +41,8 @@ public function store(Request $request)
         'email' => $request->email,
     ]);
 
-    return redirect('/jemaat');
+    return redirect('/jemaat')
+    ->with('success', 'Data jemaat berhasil ditambahkan!');
 }
 public function edit($id)
 {
@@ -67,7 +73,8 @@ public function update(Request $request, $id)
         'email' => $request->email,
     ]);
 
-    return redirect('/jemaat');
+    return redirect('/jemaat')
+    ->with('success', 'Data jemaat berhasil diperbarui!');
 }
 
 public function destroy($id)
@@ -76,7 +83,8 @@ public function destroy($id)
 
     $jemaat->delete();
 
-    return redirect('/jemaat');
+    return redirect('/jemaat')
+    ->with('success', 'Data jemaat berhasil dihapus!');
 }
 
 }
